@@ -6,9 +6,12 @@ void setup()
 void draw()
 {
 	background(100,100,100);
-	Die myDice = new Die(200,200);
-	myDice.roll();
-	myDice.show();
+	for (int xD = 0;xD<400;xD=xD+50)
+	{
+		Die myDice = new Die(xD,xD);
+		myDice.roll();
+		myDice.show();
+	}
 }
 void mousePressed()
 {
@@ -26,7 +29,7 @@ class Die //models one single dice cube
 	}
 	void roll()
 	{
-		num = num + (int)(Math.random()*4)+1;//your code here
+		num = num + (int)(Math.random()*6)+1;//your code here
 	}
 	void show()
 	{
@@ -51,9 +54,9 @@ class Die //models one single dice cube
 		{
 			strokeWeight(8);
 			stroke(0);
-			point(myX+17,myY+29);
-			point(myX+33,myY +29);
-			point(myX+25,myY +19);
+			point(myX+17,myY+31);
+			point(myX+33,myY +31);
+			point(myX+25,myY +17);
 		}
 		if (num == 4)
 		{
@@ -69,10 +72,21 @@ class Die //models one single dice cube
 		{
 			strokeWeight(8);
 			stroke(0);
-			for(int x4 =myX;x4<myX+40;x4=x4+20)
+			for(int x5 =myX;x5<myX+40;x5=x5+21)
 			{
-				point(x4+16.5,myY+33);
-				point(x4+16.5,myY+17);
+				point(x5+15.5,myY+34);
+				point(x5+15.5,myY+16);
+			}
+			point(myX+25.5,myY+25);
+		}
+		if (num ==6) 
+		{
+			strokeWeight(8);
+			stroke(0);
+			for(int y6=myY;y6<myY+40; y6=y6+14)
+			{
+				point(myX+15.5,y6+10);
+				point(myX+36.5,y6+10);
 			}
 		}
 	}
