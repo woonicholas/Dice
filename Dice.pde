@@ -1,18 +1,31 @@
 void setup()
 {
-	size(400,400);
+	size(400,500);
 	noLoop();
 }
+
 void draw()
 {
 	background(100,100,100);
+	int totalNum=0;
 	for (int xD = 0;xD<400;xD=xD+50)
 	{
-		Die myDice = new Die(xD,xD);
-		myDice.roll();
-		myDice.show();
+		
+		for (int yD = 0;yD<400;yD=yD+50)
+		{
+			Die myDice = new Die(xD,yD);
+			//myDice.roll(); <-- this code is already declared in the constructor
+			myDice.show();
+			totalNum = totalNum+myDice.myNum; 
+			
+		}
 	}
+text("Total: " + totalNum ,20,450);
+//System.out.println(totalNum);
+	
+	
 }
+
 void mousePressed()
 {
 	redraw();
@@ -21,36 +34,39 @@ class Die //models one single dice cube
 {
 	//variable declarations here
 	int myX, myY;
-	int num=0;
+	int myNum;
+	//int num;
 	Die(int x, int y) //constructor
 	{
 		myX = x;
 		myY= y;//variable initializations here
+		roll();
 	}
 	void roll()
 	{
-		num = num + (int)(Math.random()*6)+1;//your code here
+		myNum = (int)(Math.random()*6)+1;//your code here
+   
 	}
 	void show()
 	{
 		stroke(0);
 		strokeWeight(1);
 		fill(255);
-		rect(myX,myY,50,50,10);//your code here
-		if (num == 1)
+		rect(myX,myY,50,50,10);//your code here 
+		if (myNum == 1)
 		{
 			strokeWeight(10);
 			stroke(255,0,0);
 			point(myX+25,myY+25);
 		}
-		if (num == 2)
+		if (myNum == 2)
 		{
 			strokeWeight(8);
 			stroke(0);
 			point(myX+17,myY+25);
 			point(myX+33,myY+25);
 		}
-		if (num == 3)
+		if (myNum == 3)
 		{
 			strokeWeight(8);
 			stroke(0);
@@ -58,7 +74,7 @@ class Die //models one single dice cube
 			point(myX+33,myY +31);
 			point(myX+25,myY +17);
 		}
-		if (num == 4)
+		if (myNum == 4)
 		{
 			strokeWeight(8);
 			stroke(0);
@@ -68,7 +84,7 @@ class Die //models one single dice cube
 				point(x4+16.5,myY+17);
 			}
 		}
-		if (num == 5)
+		if (myNum == 5)
 		{
 			strokeWeight(8);
 			stroke(0);
@@ -79,7 +95,7 @@ class Die //models one single dice cube
 			}
 			point(myX+25.5,myY+25);
 		}
-		if (num ==6) 
+		if (myNum ==6) 
 		{
 			strokeWeight(8);
 			stroke(0);
@@ -90,4 +106,5 @@ class Die //models one single dice cube
 			}
 		}
 	}
+	
 }
